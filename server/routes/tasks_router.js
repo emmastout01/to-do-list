@@ -13,7 +13,7 @@ var config = {
 var pool = new pg.Pool(config);
 
 
-//GET route: sends data from "ToDo" table when document is ready and when user adds new task
+//GET route: sends data to client.js from "ToDo" table when document is ready and when user adds new task
 router.get('/', function (req, res) {
 
     pool.connect(function(errorConnectingToDb, db, done) {
@@ -34,6 +34,30 @@ router.get('/', function (req, res) {
         }
     }); //End pool
 }) //End GET route
+
+//POST route: sends task entered by user to database when 'Add Task' button is clicked
+router.post('/', function (req, res) {
+    var newTask = req.body;
+    console.log('task:', req.body);
+    console.log(newTask.taskName);
+    pool.connect(function(errorConnectingToDb, db, done) {
+        if(errorConnectingToDb) {
+            console.log('Error connecting', errorConnectingToDb);
+            res.send(500);
+        } else {
+            var queryText = 'INSERT INTO "ToDo" ("taskName") VALUES ($1);';
+            db.query(queryText, [newTask.taskName], function(errorMakingQuery, result) {
+                done();
+                if(errorMakingQuery) {
+                    console.log('Error making query', errorMakingQuery);
+                    res.send(500);
+                } else {
+                    res.sendStatus(201);
+                }
+            }) //END QUERY
+        }
+    }); //End pool
+    }) //End POST route
 
 
 

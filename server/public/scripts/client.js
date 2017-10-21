@@ -21,6 +21,7 @@ function refreshTasks() {
 } //end GET route
 
 function appendTasks(taskList) {
+    $('.taskListContainer').empty();
     for (var i = 0; i < taskList.length; i++) {
         var task = taskList[i];
         $('.taskListContainer').append('<span>' + task.taskName + '</span>');
@@ -30,7 +31,21 @@ function appendTasks(taskList) {
 
 function addTaskClicked() {
     console.log('add task button clicked');
-    
-
-}
+    var taskName = $('.taskName').val();
+    console.log('taskName:', taskName);
+    var taskToSend = {
+        taskName: taskName,
+    }
+    console.log(taskToSend);
+    $.ajax({
+        type: 'POST', 
+        url: '/tasks',
+        data: taskToSend
+    }).done(function (response) {
+        console.log(response);
+        refreshTasks();
+    }).fail(function (error) {
+        console.log('error in post route:', error);
+    })
+} // End addTaskClicked
 
