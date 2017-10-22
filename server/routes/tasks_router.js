@@ -45,8 +45,8 @@ router.post('/', function (req, res) {
             console.log('Error connecting', errorConnectingToDb);
             res.send(500);
         } else {
-            var queryText = 'INSERT INTO "ToDo" ("taskName") VALUES ($1);';
-            db.query(queryText, [newTask.taskName], function(errorMakingQuery, result) {
+            var queryText = 'INSERT INTO "ToDo" ("taskName", "completed") VALUES ($1, $2);';
+            db.query(queryText, [newTask.taskName, newTask.completed], function(errorMakingQuery, result) {
                 done();
                 if(errorMakingQuery) {
                     console.log('Error making query', errorMakingQuery);
@@ -59,6 +59,27 @@ router.post('/', function (req, res) {
     }); //End pool
     }) //End POST route
 
+    //PUT route: 
+router.put('/:id', function (req, res) {
+    var id = req.params.id;
+    pool.connect(function(errorConnectingToDb, db, done) {
+        if(errorConnectingToDb) {
+            console.log('Error connecting', errorConnectingToDb);
+            res.send(500);
+        } else {
+            var queryText = 'UPDATE "ToDo" SET "completed" = true WHERE "id" = $1';
+            db.query(queryText, [id], function(errorMakingQuery, result) {
+                done();
+                if(errorMakingQuery) {
+                    console.log('Error making query', errorMakingQuery);
+                    res.send(500);
+                } else {
+                    res.sendStatus(201);
+                }
+            }) //END QUERY
+        }
+    }); //End pool
+    }) //End POST route
 
 
 
