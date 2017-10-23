@@ -6,7 +6,9 @@ function onReady() {
     console.log('Document ready');
     refreshTasks();
     $('.addTaskButton').on('click', addTaskClicked);
-    $('.taskListContainer').on('change', '#completeCheckbox', completedTask);
+    //$('.taskListContainer').on('change', '#completeCheckbox', completedTask);
+    $('.taskListContainer').on('click', '.completeButton', completedTask);
+    $('.taskListContainer').on('click', '.deleteButton', deleteTask);
 } // end onReady
 
 // GET route to get tasks from database
@@ -28,12 +30,13 @@ function appendTasks(taskList) {
     for (var i = 0; i < taskList.length; i++) {
         var task = taskList[i];
         var $tr = $('<tr></tr>');
-        var completeCheckbox = '<input type="checkbox" id="completeCheckbox" data-id = "' + task.id + '" name="check"/><label for="completedCheckbox"></label>';
-        var deleteButton = '<button class="deleteButton">Delete Task</button>'
+        //var completeCheckbox = '<input type="checkbox" id="completeCheckbox" data-id = "' + task.id + '" name="check"/><label for="completedCheckbox"></label>';
+        var completeButton = '<button class= "completeButton" data-id = "' + task.id + '">Completed</button>'
+        var deleteButton = '<button class="deleteButton" data-id = "' + task.id + '">Delete Task</button>'
         $tr.data = ('task', task);
         $tr.append('<td>' + task.taskName + '</td>')
         $tr.append('<td>' + task.dueDate + '</td>')
-        $tr.append('<td>' + completeCheckbox + '</td><td>' + deleteButton + '</td>');
+        $tr.append('<td>' + completeButton + '</td><td>' + deleteButton + '</td>');
         $('.taskListContainer').append($tr);
     } //end for loop
 } //end appendTasks
@@ -63,14 +66,27 @@ function addTaskClicked() {
 //Click handler for completedTask checkbox; PUT route to change 'completed' to true
 function completedTask() {
     console.log($(this).data().id);
-    if (this.checked) {
+    $(this).closest('tr').css('background-color', 'green');
+    console.log('in completedTask');
         $.ajax({
             type: 'PUT',
             url: '/tasks/' + $(this).data().id
+        }).done(function(response) {
+            console.log(response);
+        }).fail(function(error){
+            console.log('something went wrong')
         })
-        console.log('in completedTask');
-    } else {
-        console.log('not checked');
-    }
-    
+}
+
+function deleteTask() {
+    console.log('delete button clicked')
+    $.ajax({
+        type: 'DELETE', 
+        url: '/tasks/' + $(this).data().id
+    }).done(function(response) {
+        console.log(response);
+        refreshTasks();
+    }).fail(function(error){
+        console.log('something went wrong')
+    })
 }

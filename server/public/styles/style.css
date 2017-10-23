@@ -3,7 +3,7 @@ table, th, td {
  }
 
 
-/* .completedCheckbox {
+ /* .completeCheckbox {
     width: 28px;
     height: 28px;
     position: relative;
@@ -13,7 +13,7 @@ table, th, td {
     background: linear-gradient(to bottom, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
     box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0, 0, 0, 0.5);
   }
-  .completedCheckbox label {
+  .completeCheckbox label {
     width: 20px;
     height: 20px;
     cursor: pointer;
@@ -24,7 +24,7 @@ table, th, td {
     background: linear-gradient(to bottom, #222222 0%, #45484d 100%);
     box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5), 0px 1px 0px white;
   }
-  .completedCheckbox label:after {
+  .completeCheckbox label:after {
     content: '';
     width: 9px;
     height: 5px;
@@ -40,12 +40,16 @@ table, th, td {
             transform: rotate(-45deg);
   }
  
-  .completedCheckbox input[type=checkbox] {
+  .completeCheckbox input[type=checkbox] {
     visibility: hidden;
   }
-  .completedCheckbox input[type=checkbox]:checked + label:after {
-    opacity: 1;
-  } */
+  .completeCheckbox input[type=checkbox]:checked + label:after {
+    opacity: 1; */ 
+  } 
+
+  .test {
+      background-color: red;
+  }
   
 
   

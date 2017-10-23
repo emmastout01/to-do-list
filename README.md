@@ -1,4 +1,4 @@
-# weekend-challenge-3
+# Weekend Challenge 3
 
 ## Project Description
 

@@ -79,8 +79,28 @@ router.put('/:id', function (req, res) {
             }) //END QUERY
         }
     }); //End pool
-    }) //End POST route
+    }) //End PUT route
 
-
+    //DELETE route: 
+    router.delete('/:id', function (req, res) {
+        var id = req.params.id;
+        pool.connect(function(errorConnectingToDb, db, done) {
+            if(errorConnectingToDb) {
+                console.log('Error connecting', errorConnectingToDb);
+                res.send(500);
+            } else {
+                var queryText = 'DELETE FROM "ToDo" WHERE "id" = $1';
+                db.query(queryText, [id], function(errorMakingQuery, result) {
+                    done();
+                    if(errorMakingQuery) {
+                        console.log('Error making query', errorMakingQuery);
+                        res.send(500);
+                    } else {
+                        res.sendStatus(201);
+                    }
+                }) //END QUERY
+            }
+        }); //End pool
+        }) //End DELETE route
 
 module.exports = router
