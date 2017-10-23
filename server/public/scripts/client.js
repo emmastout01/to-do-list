@@ -65,7 +65,7 @@ function addTaskClicked() {
 //Click handler for completedTask checkbox; PUT route to change 'completed' to true
 function completedTask() {
     console.log($(this).data().id);
-    $(this).closest('tr').css('background-color', 'green');
+    $(this).closest('tr').css('background-color', 'rgb(86, 201, 95');
     console.log('in completedTask');
         $.ajax({
             type: 'PUT',
