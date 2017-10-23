@@ -35,7 +35,6 @@ function appendTasks(taskList) {
         var deleteButton = '<button class="deleteButton" data-id = "' + task.id + '">Delete Task</button>'
         $tr.data = ('task', task);
         $tr.append('<td>' + task.taskName + '</td>')
-        $tr.append('<td>' + task.dueDate + '</td>')
         $tr.append('<td>' + completeButton + '</td><td>' + deleteButton + '</td>');
         $('.taskListContainer').append($tr);
     } //end for loop
