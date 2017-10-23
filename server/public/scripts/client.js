@@ -37,6 +37,9 @@ function appendTasks(taskList) {
         $tr.append('<td>' + task.taskName + '</td>')
         $tr.append('<td>' + completeButton + '</td><td>' + deleteButton + '</td>');
         $('.taskListContainer').append($tr);
+        if (task.completed === true) {
+            $tr.addClass('success');
+        }
     } //end for loop
 } //end appendTasks
 
@@ -65,16 +68,17 @@ function addTaskClicked() {
 //Click handler for completedTask checkbox; PUT route to change 'completed' to true
 function completedTask() {
     console.log($(this).data().id);
-    $(this).closest('tr').css('background-color', 'rgb(86, 201, 95');
     console.log('in completedTask');
         $.ajax({
             type: 'PUT',
             url: '/tasks/' + $(this).data().id
         }).done(function(response) {
             console.log(response);
+            refreshTasks();
         }).fail(function(error){
             console.log('something went wrong')
         })
+    
 }
 
 function deleteTask() {

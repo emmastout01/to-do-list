@@ -11,7 +11,7 @@ input {
 }
 
 .taskColumn {
-    max-width: 300px;
+    width: 700px;
 }
 
 .addTaskButton {
@@ -50,7 +50,10 @@ input {
     background-color: rgb(32, 126, 35); /* Green */
     color: white;
 }
-  
+
+.success {
+    background-color: rgb(86, 201, 95);
+}
 
 
   
