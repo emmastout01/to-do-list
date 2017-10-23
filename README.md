@@ -5,11 +5,13 @@
 
 ## Table Setup
 
-```CREATE TABLE "ToDo" (
+```
+CREATE TABLE "ToDo" (
 	"id" serial primary key,
 	"task" varchar(400) not null,
 	"completed" boolean,
-	);```
+	);
+```
 
 ## Tasks
 
