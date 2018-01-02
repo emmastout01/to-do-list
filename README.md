@@ -1,4 +1,4 @@
-# Weekend Challenge 3
+# Weekend Challenge 3: ToDo List App
 
 ## Project Description
 
