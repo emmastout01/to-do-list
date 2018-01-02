@@ -1,4 +1,17 @@
-table, th, td {
+
+body{
+    background-image: linear-gradient(to top, #fccb90 0%, #d57eeb 100%, #6b8cce 100%, #a2b6df 100%);
+    background-attachment: fixed;
+    background-position: right-top;
+    background-repeat: no-repeat;
+}
+
+.container{
+    width: 100%;
+    position: center;
+}
+ 
+ table, th, td {
     border: 1px solid black;
  }
 
@@ -52,7 +65,7 @@ input {
 }
 
 .success {
-    background-color: rgb(86, 201, 95);
+    background-color: rgb(122, 197, 127);
 }
 
 

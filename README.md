@@ -2,6 +2,14 @@
 
 ## Project Description
 
+In this ToDo List app, users can add tasks to a to-do list, mark if they are completed, and delete tasks from their list.
+
+## Technologies Used
+
+jQuery
+Express
+Node.js
+PostgreSQL
 
 ## Table Setup
 
