@@ -6,10 +6,10 @@ In this ToDo List app, users can add tasks to a to-do list, mark if they are com
 
 ## Technologies Used
 
-jQuery
-Express
-Node.js
-PostgreSQL
+- jQuery
+- Express
+- Node.js
+- PostgreSQL
 
 ## Table Setup
 
